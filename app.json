@@ -1,4 +1,15 @@
 {
-  "name": "SafetyMapApp",
-  "displayName": "女性安全地图"
+  "pages": [
+    "pages/city-selection/index",
+    "pages/map/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "女性安全地图",
+    "navigationBarBackgroundColor": "#0f172a",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0b1120",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }

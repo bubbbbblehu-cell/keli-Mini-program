@@ -1,0 +1,9 @@
+const SUPABASE_URL = 'https://hmmruoankhohowlzajll.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhtbXJ1b2Fua2hvaG93bHphamxsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1MjQxNjgsImV4cCI6MjA4NjEwMDE2OH0.nGVgFlrTPQh86Ba0doT_mmeHvCnF0NjJ6MUJEvQKV3g';
+const TENCENT_MAP_KEY = 'APSBZ-CCRCJ-NJUFP-X22NJ-UJDL3-H5BIP';
+
+module.exports = {
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY,
+  TENCENT_MAP_KEY,
+};

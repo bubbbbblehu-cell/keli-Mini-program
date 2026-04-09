@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "安全地图",
+  "usingComponents": {
+    "hotel-sheet": "/components/hotel-sheet/index"
+  }
+}

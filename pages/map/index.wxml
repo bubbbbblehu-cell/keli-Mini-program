@@ -1,0 +1,101 @@
+<view class="page-shell">
+  <view wx:if="{{loading}}" class="loading-state">
+    <view class="loading-pulse"></view>
+    <text class="loading-text">正在绘制城市安全地图...</text>
+  </view>
+
+  <view wx:else class="map-page">
+    <map
+      class="map-canvas"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      scale="{{scale}}"
+      show-location="true"
+      markers="{{markers}}"
+      circles="{{circles}}"
+      bindmarkertap="handleMarkerTap"
+    ></map>
+
+    <view class="top-bar glass-card">
+      <view>
+        <text class="city-label">当前城市</text>
+        <text class="city-name">{{city.name}}</text>
+      </view>
+      <view class="switch-link" bindtap="openCitySheet">切换</view>
+    </view>
+
+    <view class="stats-strip">
+      <view class="stats-card glass-card">
+        <text class="stats-key">酒店总数</text>
+        <text class="stats-value">{{totalHotels}}</text>
+      </view>
+      <view class="stats-card glass-card">
+        <text class="stats-key">当前显示</text>
+        <text class="stats-value">{{displayedHotels}}</text>
+      </view>
+    </view>
+
+    <view class="control-stack">
+      <view class="control-btn {{showHeatmap ? 'control-btn-active' : ''}}" bindtap="toggleHeatmap">热力图</view>
+      <view class="control-btn" bindtap="openFilterSheet">筛选{{minRating > 0 ? ' ≥' + minRating : ''}}</view>
+      <view class="control-btn" bindtap="goBackToCities">城市页</view>
+    </view>
+
+    <view class="legend-card glass-card">
+      <text class="legend-title">安全评分图例</text>
+      <view class="legend-row"><view class="legend-dot safe"></view><text>4.5 - 5.0 高安全</text></view>
+      <view class="legend-row"><view class="legend-dot warm"></view><text>4.0 - 4.4 需观察</text></view>
+      <view class="legend-row"><view class="legend-dot risk"></view><text>0 - 3.9 建议谨慎</text></view>
+    </view>
+
+    <view wx:if="{{showCitySheet}}" class="sheet-overlay" bindtap="closeCitySheet">
+      <view class="sheet-panel dark-panel" catchtap="noop">
+        <view class="sheet-head">
+          <text class="sheet-title">切换城市</text>
+          <text class="sheet-close" bindtap="closeCitySheet">✕</text>
+        </view>
+        <scroll-view scroll-y class="sheet-scroll">
+          <view wx:for="{{groupedCities}}" wx:key="country" class="country-block">
+            <text class="country-title">{{item.country}}</text>
+            <view class="city-grid">
+              <view
+                wx:for="{{item.cities}}"
+                wx:key="id"
+                class="city-chip {{city.id === item.id ? 'city-chip-active' : ''}}"
+                data-city="{{item}}"
+                bindtap="selectCity"
+              >
+                <text class="chip-name">{{item.name}}</text>
+                <text class="chip-code">{{item.code}}</text>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+
+    <view wx:if="{{showFilterSheet}}" class="sheet-overlay" bindtap="closeFilterSheet">
+      <view class="sheet-panel light-panel" catchtap="noop">
+        <view class="sheet-head filter-head">
+          <text class="sheet-title dark-text">最低安全评分</text>
+          <text class="sheet-close dark-text" bindtap="closeFilterSheet">✕</text>
+        </view>
+        <input class="filter-input" type="digit" value="{{filterInput}}" bindinput="onFilterInput" placeholder="例如 4.2" />
+        <view class="filter-actions">
+          <view class="filter-btn filter-clear" bindtap="clearFilter">清除</view>
+          <view class="filter-btn filter-apply" bindtap="applyFilterValue">应用</view>
+        </view>
+      </view>
+    </view>
+
+    <hotel-sheet
+      visible="{{selectedHotelId !== ''}}"
+      hotel="{{selectedHotel}}"
+      isFavorite="{{selectedHotelIsFavorite}}"
+      bind:close="closeHotelSheet"
+      bind:togglefavorite="handleToggleFavorite"
+      bind:submitreview="handleSubmitReview"
+      bind:openbooking="handleOpenBooking"
+    />
+  </view>
+</view>

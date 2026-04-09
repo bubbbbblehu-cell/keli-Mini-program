@@ -1,0 +1,58 @@
+<view wx:if="{{visible}}" class="sheet-overlay" bindtap="closeSheet">
+  <view class="sheet-panel" catchtap="stopPropagation">
+    <view class="sheet-handle"></view>
+
+    <view wx:if="{{hotel}}" class="sheet-content">
+      <view class="sheet-header">
+        <view class="sheet-title-wrap">
+          <text class="sheet-title">{{hotel.name}}</text>
+          <text class="sheet-subtitle">{{hotel.address || '暂无地址信息'}}</text>
+        </view>
+        <view class="sheet-close" bindtap="closeSheet">✕</view>
+      </view>
+
+      <view class="metric-row">
+        <view class="metric-card">
+          <text class="metric-label">安全评分</text>
+          <text class="metric-value">{{hotel.safetyScore}} / 5.0</text>
+        </view>
+        <view class="metric-card">
+          <text class="metric-label">评价数量</text>
+          <text class="metric-value">{{hotel.reviewCount}} 条</text>
+        </view>
+      </view>
+
+      <view class="action-row">
+        <view class="action-pill favorite {{isFavorite ? 'active-favorite' : ''}}" bindtap="handleToggleFavorite">
+          {{isFavorite ? '★ 已收藏' : '☆ 收藏'}}
+        </view>
+        <view class="action-pill booking" bindtap="handleOpenBooking">订房链接</view>
+      </view>
+
+      <view class="review-block">
+        <text class="review-title">添加评价</text>
+        <view class="stars-row">
+          <view
+            wx:for="{{stars}}"
+            wx:key="*this"
+            class="star-chip {{rating >= item ? 'star-chip-active' : ''}}"
+            data-value="{{item}}"
+            bindtap="handleStarTap"
+          >
+            ★
+          </view>
+        </view>
+
+        <textarea
+          class="comment-box"
+          placeholder="请输入你的入住安全观察，比如门锁、窗户、镜子等情况..."
+          value="{{comment}}"
+          bindinput="handleCommentInput"
+          maxlength="300"
+        />
+
+        <view class="submit-btn" bindtap="submitReview">提交评价</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,182 @@
+.sheet-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 30;
+  background: rgba(3, 7, 18, 0.56);
+  display: flex;
+  align-items: flex-end;
+}
+
+.sheet-panel {
+  width: 100%;
+  max-height: 82vh;
+  padding: 20rpx 24rpx 34rpx;
+  border-radius: 32rpx 32rpx 0 0;
+  background: linear-gradient(180deg, #f8fbff 0%, #eff6ff 100%);
+}
+
+.sheet-handle {
+  width: 96rpx;
+  height: 8rpx;
+  margin: 4rpx auto 24rpx;
+  border-radius: 999rpx;
+  background: rgba(15, 23, 42, 0.15);
+}
+
+.sheet-content {
+  color: #0f172a;
+}
+
+.sheet-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.sheet-title-wrap {
+  flex: 1;
+}
+
+.sheet-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sheet-subtitle {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.6;
+  color: #475569;
+}
+
+.sheet-close {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 18rpx;
+  text-align: center;
+  line-height: 60rpx;
+  color: #334155;
+  background: rgba(148, 163, 184, 0.16);
+}
+
+.metric-row {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 24rpx;
+}
+
+.metric-card {
+  flex: 1;
+  padding: 20rpx;
+  border-radius: 24rpx;
+  background: #ffffff;
+}
+
+.metric-label {
+  display: block;
+  color: #64748b;
+  font-size: 22rpx;
+}
+
+.metric-value {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.action-row {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 22rpx;
+}
+
+.action-pill {
+  flex: 1;
+  padding: 20rpx 16rpx;
+  text-align: center;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.favorite {
+  color: #0f172a;
+  background: #e2e8f0;
+}
+
+.active-favorite {
+  color: #ffffff;
+  background: #f59e0b;
+}
+
+.booking {
+  color: #ffffff;
+  background: #0f766e;
+}
+
+.review-block {
+  margin-top: 24rpx;
+  padding: 24rpx;
+  border-radius: 28rpx;
+  background: #ffffff;
+}
+
+.review-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.stars-row {
+  display: flex;
+  gap: 14rpx;
+  margin-top: 18rpx;
+}
+
+.star-chip {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 20rpx;
+  text-align: center;
+  line-height: 64rpx;
+  color: #cbd5e1;
+  background: #e2e8f0;
+  font-size: 34rpx;
+}
+
+.star-chip-active {
+  color: #ffffff;
+  background: #f59e0b;
+}
+
+.comment-box {
+  width: 100%;
+  min-height: 180rpx;
+  margin-top: 20rpx;
+  padding: 20rpx;
+  border-radius: 24rpx;
+  background: #f8fafc;
+  color: #0f172a;
+  font-size: 26rpx;
+}
+
+.submit-btn {
+  margin-top: 22rpx;
+  padding: 22rpx;
+  border-radius: 24rpx;
+  text-align: center;
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: 700;
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+}

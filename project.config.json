@@ -1,10 +1,17 @@
 {
+  "description": "女性安全地图小程序",
+  "packOptions": {
+    "ignore": []
+  },
   "setting": {
+    "urlCheck": false,
     "es6": true,
+    "enhance": true,
     "postcss": true,
     "minified": true,
+    "compileHotReLoad": true,
+    "ignoreUploadUnusedFiles": true,
     "uglifyFileName": false,
-    "enhance": true,
     "packNpmRelationList": [],
     "babelSetting": {
       "ignore": [],
@@ -15,11 +22,11 @@
     "minifyWXML": true
   },
   "compileType": "miniprogram",
-  "simulatorPluginLibVersion": {},
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
+  "libVersion": "3.15.1",
   "appid": "wx71ea25c4fdd46c6f",
-  "editorSetting": {}
+  "projectname": "keli-Mini-program",
+  "simulatorType": "wechat",
+  "miniprogramRoot": ".",
+  "srcMiniprogramRoot": ".",
+  "condition": {}
 }

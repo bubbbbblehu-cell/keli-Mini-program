@@ -1,6 +1,9 @@
 App({
   globalData: {
     appName: '女性安全地图小程序',
+    theme: {
+      text: '#e8eefc',
+    },
   },
 
   onLaunch() {

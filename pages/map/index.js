@@ -24,6 +24,10 @@ Page({
     selectedHotel: null,
     selectedHotelId: '',
     selectedHotelIsFavorite: false,
+    selectedHotelVisible: false,
+    selectedHotelAddress: '',
+    favoriteText: '☆ 收藏',
+    filterButtonText: '筛选',
     showHeatmap: true,
     minRating: 0,
     filterInput: '0',
@@ -53,10 +57,6 @@ Page({
       const dbCities = await getCities();
       const cities = transformCitiesData(dbCities);
       const grouped = groupCitiesByCountry(cities);
-      const groupedCities = Object.keys(grouped).map((country) => ({
-        country,
-        cities: grouped[country],
-      }));
 
       let city = cities.find((item) => item.id === this.cityId);
       if (!city) {
@@ -71,6 +71,8 @@ Page({
       if (!city) {
         throw new Error('暂无可用城市');
       }
+
+      const groupedCities = this.buildGroupedCities(grouped, city.id);
 
       storage.set('selectedCity', city);
       this.setData({
@@ -125,6 +127,7 @@ Page({
       circles: buildCircles(heatmapData, this.data.showHeatmap),
       totalHotels: this.data.hotels.length,
       displayedHotels: filteredHotels.length,
+      filterButtonText: minRating > 0 ? `筛选 ≥${minRating}` : '筛选',
     });
   },
 
@@ -137,6 +140,9 @@ Page({
       selectedHotel: hotel,
       selectedHotelId: hotel.id,
       selectedHotelIsFavorite: this.data.favorites.some((item) => item.id === hotel.id),
+      selectedHotelVisible: true,
+      selectedHotelAddress: hotel.address || '暂无地址信息',
+      favoriteText: this.data.favorites.some((item) => item.id === hotel.id) ? '★ 已收藏' : '☆ 收藏',
     });
   },
 
@@ -145,6 +151,9 @@ Page({
       selectedHotel: null,
       selectedHotelId: '',
       selectedHotelIsFavorite: false,
+      selectedHotelVisible: false,
+      selectedHotelAddress: '',
+      favoriteText: '☆ 收藏',
     });
   },
 
@@ -201,6 +210,7 @@ Page({
     this.cityId = city.id;
     this.setData({
       city,
+      groupedCities: this.buildGroupedCities(groupCitiesByCountry(this.data.cities), city.id),
       latitude: city.latitude,
       longitude: city.longitude,
       scale: getMapScale(city.zoomLevel),
@@ -218,6 +228,7 @@ Page({
     this.setData({
       favorites: result.favorites,
       selectedHotelIsFavorite: result.isFavorite,
+      favoriteText: result.isFavorite ? '★ 已收藏' : '☆ 收藏',
     });
 
     wx.showToast({
@@ -296,6 +307,16 @@ Page({
         });
       },
     });
+  },
+
+  buildGroupedCities(grouped, activeCityId) {
+    return Object.keys(grouped).map((country) => ({
+      country,
+      cities: (grouped[country] || []).map((city) => ({
+        ...city,
+        active: city.id === activeCityId,
+      })),
+    }));
   },
 
   goBackToCities() {

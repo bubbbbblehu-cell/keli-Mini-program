@@ -1,22 +1,7 @@
-:root {
-  --bg: #07111f;
-  --panel: #0f1b31;
-  --panel-strong: #142443;
-  --text: #e8eefc;
-  --muted: #9ab0d3;
-  --accent: #7dd3fc;
-  --accent-strong: #38bdf8;
-  --warm: #fbbf24;
-  --danger: #fb7185;
-  --safe: #4ade80;
-}
-
 page {
   min-height: 100%;
-  background:
-    radial-gradient(circle at top, rgba(56, 189, 248, 0.14), transparent 32%),
-    linear-gradient(180deg, #08111f 0%, #0b1325 46%, #10192d 100%);
-  color: var(--text);
+  background: #08111f;
+  color: #e8eefc;
   font-family: 'PingFang SC', 'Helvetica Neue', sans-serif;
 }
 

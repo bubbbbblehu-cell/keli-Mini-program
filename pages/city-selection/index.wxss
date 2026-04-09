@@ -90,7 +90,6 @@
 .city-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 18rpx;
 }
 
 .city-card {
@@ -99,6 +98,12 @@
   border-radius: 24rpx;
   background: linear-gradient(180deg, rgba(18, 31, 57, 0.96), rgba(12, 22, 39, 0.96));
   border: 1rpx solid rgba(125, 211, 252, 0.12);
+  margin-right: 18rpx;
+  margin-bottom: 18rpx;
+}
+
+.city-card:nth-child(2n) {
+  margin-right: 0;
 }
 
 .city-name {

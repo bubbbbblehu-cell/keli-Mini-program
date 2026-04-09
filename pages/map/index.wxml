@@ -37,7 +37,7 @@
 
     <view class="control-stack">
       <view class="control-btn {{showHeatmap ? 'control-btn-active' : ''}}" bindtap="toggleHeatmap">热力图</view>
-      <view class="control-btn" bindtap="openFilterSheet">筛选{{minRating > 0 ? ' ≥' + minRating : ''}}</view>
+      <view class="control-btn" bindtap="openFilterSheet">{{filterButtonText}}</view>
       <view class="control-btn" bindtap="goBackToCities">城市页</view>
     </view>
 
@@ -61,7 +61,7 @@
               <view
                 wx:for="{{item.cities}}"
                 wx:key="id"
-                class="city-chip {{city.id === item.id ? 'city-chip-active' : ''}}"
+                class="city-chip {{item.active ? 'city-chip-active' : ''}}"
                 data-city="{{item}}"
                 bindtap="selectCity"
               >
@@ -89,13 +89,15 @@
     </view>
 
     <hotel-sheet
-      visible="{{selectedHotelId !== ''}}"
+      visible="{{selectedHotelVisible}}"
       hotel="{{selectedHotel}}"
+      hotelAddress="{{selectedHotelAddress}}"
+      favoriteText="{{favoriteText}}"
       isFavorite="{{selectedHotelIsFavorite}}"
-      bind:close="closeHotelSheet"
-      bind:togglefavorite="handleToggleFavorite"
-      bind:submitreview="handleSubmitReview"
-      bind:openbooking="handleOpenBooking"
+      bindclose="closeHotelSheet"
+      bindtogglefavorite="handleToggleFavorite"
+      bindsubmitreview="handleSubmitReview"
+      bindopenbooking="handleOpenBooking"
     />
   </view>
 </view>

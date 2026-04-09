@@ -34,11 +34,11 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 20rpx;
 }
 
 .sheet-title-wrap {
   flex: 1;
+  margin-right: 20rpx;
 }
 
 .sheet-title {
@@ -68,7 +68,6 @@
 
 .metric-row {
   display: flex;
-  gap: 16rpx;
   margin-top: 24rpx;
 }
 
@@ -77,6 +76,10 @@
   padding: 20rpx;
   border-radius: 24rpx;
   background: #ffffff;
+}
+
+.metric-card + .metric-card {
+  margin-left: 16rpx;
 }
 
 .metric-label {
@@ -95,7 +98,6 @@
 
 .action-row {
   display: flex;
-  gap: 16rpx;
   margin-top: 22rpx;
 }
 
@@ -106,6 +108,10 @@
   border-radius: 999rpx;
   font-size: 26rpx;
   font-weight: 600;
+}
+
+.action-pill + .action-pill {
+  margin-left: 16rpx;
 }
 
 .favorite {
@@ -139,7 +145,6 @@
 
 .stars-row {
   display: flex;
-  gap: 14rpx;
   margin-top: 18rpx;
 }
 
@@ -152,6 +157,11 @@
   color: #cbd5e1;
   background: #e2e8f0;
   font-size: 34rpx;
+  margin-right: 14rpx;
+}
+
+.star-chip:last-child {
+  margin-right: 0;
 }
 
 .star-chip-active {

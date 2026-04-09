@@ -8,16 +8,36 @@ Component({
       type: Object,
       value: null,
     },
+    hotelAddress: {
+      type: String,
+      value: '',
+    },
+    favoriteText: {
+      type: String,
+      value: '☆ 收藏',
+    },
     isFavorite: {
       type: Boolean,
       value: false,
+      observer(value) {
+        this.setData({
+          isFavoriteClass: value ? 'active-favorite' : '',
+        });
+      },
     },
   },
 
   data: {
     rating: 5,
     comment: '',
-    stars: [1, 2, 3, 4, 5],
+    stars: [
+      { value: 1, active: true },
+      { value: 2, active: true },
+      { value: 3, active: true },
+      { value: 4, active: true },
+      { value: 5, active: true },
+    ],
+    isFavoriteClass: '',
   },
 
   methods: {
@@ -27,9 +47,19 @@ Component({
 
     stopPropagation() {},
 
+    buildStars(rating) {
+      return [1, 2, 3, 4, 5].map((value) => ({
+        value,
+        active: rating >= value,
+      }));
+    },
+
     handleStarTap(event) {
       const rating = Number(event.currentTarget.dataset.value || 5);
-      this.setData({ rating });
+      this.setData({
+        rating,
+        stars: this.buildStars(rating),
+      });
     },
 
     handleCommentInput(event) {
@@ -62,6 +92,7 @@ Component({
       this.setData({
         rating: 5,
         comment: '',
+        stars: this.buildStars(5),
       });
     },
   },
